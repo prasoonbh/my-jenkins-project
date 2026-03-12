@@ -5,14 +5,18 @@ pipeline{
         SERVER_CREDENTIALS=credentials('server-credentials')
     }
     stages {
-        stage('Buiid'){
+        stage('Build'){
             steps {
                 echo 'Prasoon is Building the application....'
                 withCredentials ([
-                        usernamePassword(credentials: 'server-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')
+                        usernamePassword(
+                            credentialsId: 'server-credentials', 
+                            usernameVariable: 'USER', 
+                            passwordVariable: 'PASSWORD'
+                            )
 
                 ])  {
-                        sh "some script ${USER} ${PASSWORD}"
+                        sh "echo running some script with  ${USER} ${PASSWORD}"
                 } 
             }
         }
