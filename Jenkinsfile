@@ -1,15 +1,15 @@
 pipeline{
     agent any
-    enviroment{
+    environment {
         NEW_VERSION = '1.3.0'
-        SERVER-CREDENTIALS=credentials('server-credentials')
+        SERVER_CREDENTIALS=credentials('server-credentials')
     }
     stages {
         stage('Buiid'){
             steps {
                 echo 'Prasoon is Building the application....'
                 withCredentials ([
-                        usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PASSWORD)
+                        usernamePassword(credentials: 'server-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')
 
                 ])  {
                         sh "some script ${USER} ${PASSWORD}"
@@ -25,7 +25,7 @@ pipeline{
         stage('Deploy') {
             steps {
                 echo 'Prasoon is in Deploymeny stage'
-                echo "deploying with ${SERVER-CREDENTIALS}"
+                echo "deploying with ${SERVER_CREDENTIALS}"
             }
         }
         
