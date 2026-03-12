@@ -16,7 +16,7 @@ pipeline{
                             )
 
                 ])  {
-                        sh " running some script with  ${USER} ${PASSWORD}"
+                        
                 } 
             }
         }
