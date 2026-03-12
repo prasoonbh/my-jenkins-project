@@ -2,14 +2,18 @@ pipeline{
     agent any
     enviroment{
         NEW_VERSION = '1.3.0'
-        SERVER-CREDENTIALS = credentials('server-credentials')
+        SERVER-CREDENTIALS=credentials('server-credentials')
     }
     stages {
         stage('Buiid'){
             steps {
                 echo 'Prasoon is Building the application....'
-                echo "building version ${NEW_VERSION}" // if you want to take this variable as string use ""
-                echo 'building version ${NEW_VERSION}'   
+                withCredentials ([
+                        usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PASSWORD)
+
+                ])  {
+                        sh "some script ${USER} ${PASSWORD}"
+                } 
             }
         }
         stage ('Test') {
